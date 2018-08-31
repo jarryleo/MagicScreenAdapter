@@ -1,0 +1,1 @@
+include ':app', ':screen_adapter_lib'
