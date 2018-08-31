@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
  */
 class ScreenAdapter {
 
-    static int designWidthInPx = 360;
+    static int designWidthInDp = 360;
 
 
     /**
@@ -24,9 +24,9 @@ class ScreenAdapter {
         boolean isVerticalSlide = (activity.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT);
         if (isVerticalSlide) {
-            activityDm.density = activityDm.widthPixels / (float) designWidthInPx;
+            activityDm.density = activityDm.widthPixels / (float) designWidthInDp;
         } else {
-            activityDm.density = activityDm.heightPixels / (float) designWidthInPx;
+            activityDm.density = activityDm.heightPixels / (float) designWidthInDp;
         }
         activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
         activityDm.densityDpi = (int) (160 * activityDm.density + 0.5);

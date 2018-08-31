@@ -9,7 +9,7 @@ public class MagicScreenAdapter {
     private MagicScreenAdapter() {
     }
 
-    public static void initDesignWidthInPx(int designWidthInPx) {
-        ScreenAdapter.designWidthInPx = designWidthInPx;
+    public static void initDesignWidthInDp(int designWidthInDp) {
+        ScreenAdapter.designWidthInDp = designWidthInDp;
     }
 }

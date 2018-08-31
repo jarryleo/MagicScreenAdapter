@@ -1,7 +1,6 @@
 package cn.leo.magic.screen;
 
 import android.app.Activity;
-import android.util.Log;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +23,6 @@ public class ScreenAspect {
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object target = joinPoint.getTarget();
         boolean b = target.getClass().isAnnotationPresent(IgnoreScreenAdapter.class);
-        Log.e("------", "onCreate: -------" + target.getClass().getName());
         if (!b) {
             if (target instanceof Activity) {
                 ScreenAdapter.adaptScreen((Activity) target);
