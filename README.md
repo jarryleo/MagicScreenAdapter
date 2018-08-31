@@ -4,6 +4,8 @@
 本适配方案是用的 今日头条的 适配方案, 界面在不同尺寸屏幕上是等比缩放的;     
 预览的时候请使用 1920x1080 的屏幕分辨率预览,预览是什么样在任何设备都是这个样子      
 
+> 如果某个Activity 不想启用适配功能,请打上注解:@IgnoreScreenAdapter   
+
 ### 依赖方法:
 #### To get a Git project into your build:
 #### Step 1. Add the JitPack repository to your build file
