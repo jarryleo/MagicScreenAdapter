@@ -45,7 +45,7 @@ apply plugin: 'android-aspectjx'  //kotlin 用这个，编译速度会慢点
 ...
 dependencies {
 	...
-	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.2'
+	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.3'
 }
 ```
 > 上面2个build里面的 java 和 kotlin 二选一,如果AS版本低于3.0 请使用kotlin 版本
