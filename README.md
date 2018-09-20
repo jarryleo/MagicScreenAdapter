@@ -35,7 +35,7 @@ allprojects {
 	}
 }
 ```
-google()和jcenter()这两个仓库一般是默认的，如果没有请加上
+google()和jcenter()这两个仓库一般是默认的，如果没有请加上   
 
 #### Step 2. Add the dependency
 2.在app的build里面添加插件和依赖
@@ -45,10 +45,10 @@ apply plugin: 'android-aspectjx'  //kotlin 用这个，编译速度会慢点
 ...
 dependencies {
 	...
-	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.1'
+	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.2'
 }
 ```
-
+> 上面2个build里面的 java 和 kotlin 二选一,如果AS版本低于3.0 请使用kotlin 版本
 
 > 用于支持kotlin的插件用的是 [aspectjx](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)   
 > 感谢插件作者    
