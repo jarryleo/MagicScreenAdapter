@@ -23,8 +23,10 @@ public class ScreenAspect {
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object target = joinPoint.getTarget();
         boolean b = target.getClass().isAnnotationPresent(IgnoreScreenAdapter.class);
-        if (!b) {
-            if (target instanceof Activity) {
+        if (target instanceof Activity) {
+            if (b) {
+                ScreenAdapter.cancelAdaptScreen((Activity) target);
+            } else {
                 ScreenAdapter.adaptScreen((Activity) target);
             }
         }
