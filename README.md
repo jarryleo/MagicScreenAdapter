@@ -42,7 +42,8 @@ google()和jcenter()这两个仓库一般是默认的，如果没有请加上
 2.在app的build里面添加插件和依赖
 ```
 apply plugin: 'cn.leo.plugin.magic' //java 用这个
-apply plugin: 'android-aspectjx'  //kotlin 或者 AS 版本低于3.0 用下面这个，编译速度可能会稍微慢点
+//kotlin 或者 AS 版本低于3.0 用下面这个，编译速度可能会稍微慢点
+apply plugin: 'android-aspectjx'  
 ...
 dependencies {
 	...
