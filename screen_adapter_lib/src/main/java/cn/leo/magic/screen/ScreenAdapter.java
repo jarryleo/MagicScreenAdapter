@@ -3,6 +3,8 @@ package cn.leo.magic.screen;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 
 /**
@@ -17,7 +19,11 @@ class ScreenAdapter {
     /**
      * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
      */
-    static void adaptScreen(final Activity activity) {
+    @RequiresApi(api = Build.VERSION_CODES.DONUT)
+    public static void adaptScreen(final Activity activity) {
+        if (activity == null) {
+            return;
+        }
         final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
         final DisplayMetrics appDm = activity.getApplication().getResources().getDisplayMetrics();
         final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
@@ -40,7 +46,11 @@ class ScreenAdapter {
      *
      * @param activity The activity.
      */
+    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     public static void cancelAdaptScreen(final Activity activity) {
+        if (activity == null) {
+            return;
+        }
         final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
         final DisplayMetrics appDm = activity.getApplication().getResources().getDisplayMetrics();
         final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
@@ -58,6 +68,9 @@ class ScreenAdapter {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isAdaptScreen(Activity activity) {
+        if (activity == null) {
+            return false;
+        }
         final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
         final DisplayMetrics appDm = activity.getApplication().getResources().getDisplayMetrics();
         return systemDm.density != appDm.density;
