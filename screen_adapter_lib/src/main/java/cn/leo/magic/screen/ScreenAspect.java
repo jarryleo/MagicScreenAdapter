@@ -36,26 +36,33 @@ public class ScreenAspect {
     @Around("pointcutActivity() || pointcutFragment() || pointcutFragmentV4()")
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object target = joinPoint.getTarget();
-        boolean b = target.getClass().isAnnotationPresent(IgnoreScreenAdapter.class);
+        boolean hasIgnoreAdapter = target.getClass().isAnnotationPresent(IgnoreScreenAdapter.class);
+        boolean hasDesignWidth = target.getClass().isAnnotationPresent(ScreenAdapterDesignWidthInDp.class);
+        int designWidthInDp = ScreenAdapter.mGlobalDesignWidthInDp;
+        if (hasDesignWidth) {
+            ScreenAdapterDesignWidthInDp annotation =
+                    target.getClass().getAnnotation(ScreenAdapterDesignWidthInDp.class);
+            designWidthInDp = annotation.value();
+        }
         if (target instanceof Activity) {
-            if (b) {
+            if (hasIgnoreAdapter) {
                 ScreenAdapter.cancelAdaptScreen((Activity) target);
             } else {
-                ScreenAdapter.adaptScreen((Activity) target);
+                ScreenAdapter.adaptScreen((Activity) target, designWidthInDp);
             }
         }
-        if (target instanceof Fragment){
-            if (b) {
+        if (target instanceof Fragment) {
+            if (hasIgnoreAdapter) {
                 ScreenAdapter.cancelAdaptScreen(((Fragment) target).getActivity());
             } else {
-                ScreenAdapter.adaptScreen(((Fragment) target).getActivity());
+                ScreenAdapter.adaptScreen(((Fragment) target).getActivity(), designWidthInDp);
             }
         }
-        if (target instanceof android.support.v4.app.Fragment){
-            if (b) {
+        if (target instanceof android.support.v4.app.Fragment) {
+            if (hasIgnoreAdapter) {
                 ScreenAdapter.cancelAdaptScreen(((android.support.v4.app.Fragment) target).getActivity());
             } else {
-                ScreenAdapter.adaptScreen(((android.support.v4.app.Fragment) target).getActivity());
+                ScreenAdapter.adaptScreen(((android.support.v4.app.Fragment) target).getActivity(), designWidthInDp);
             }
         }
         joinPoint.proceed();

@@ -12,17 +12,22 @@ import android.util.DisplayMetrics;
  * @date : 2018/8/31 14:02
  */
 class ScreenAdapter {
-
-    static int designWidthInDp = 360;
+    /**
+     * 默认全局预览布局宽度
+     */
+    static int mGlobalDesignWidthInDp = 360;
 
 
     /**
      * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
      */
     @RequiresApi(api = Build.VERSION_CODES.DONUT)
-    public static void adaptScreen(final Activity activity) {
+    static void adaptScreen(final Activity activity, int designWidthInDp) {
         if (activity == null) {
             return;
+        }
+        if (designWidthInDp <= 0) {
+            designWidthInDp = mGlobalDesignWidthInDp;
         }
         final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
         final DisplayMetrics appDm = activity.getApplication().getResources().getDisplayMetrics();
@@ -47,7 +52,7 @@ class ScreenAdapter {
      * @param activity The activity.
      */
     @RequiresApi(api = Build.VERSION_CODES.DONUT)
-    public static void cancelAdaptScreen(final Activity activity) {
+    static void cancelAdaptScreen(final Activity activity) {
         if (activity == null) {
             return;
         }
@@ -67,7 +72,7 @@ class ScreenAdapter {
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isAdaptScreen(Activity activity) {
+    static boolean isAdaptScreen(Activity activity) {
         if (activity == null) {
             return false;
         }

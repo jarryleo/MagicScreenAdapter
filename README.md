@@ -2,29 +2,52 @@
 不用写一句代码做好屏幕适配:
 
 本适配方案是用的 今日头条的 适配方案, 界面在不同尺寸屏幕上是等比缩放的;     
-预览的时候请使用 1920x1080 (Nexus5或者Pixel,360dp宽度的分辨率都可以) 的屏幕分辨率预览,预览是什么样在任何设备都是这个样子      
+预览的时候建议使用 1920x1080(360dp宽度)的屏幕分辨率预览 (Nexus5或者Pixel);     
+布局预览是什么样在任何设备都是这个样子!   
 
-> 如果某个Activity 不想启用适配功能,请打上注解:@IgnoreScreenAdapter   
+### 声明:
+**本框架以布局预览为标准,跟设计图无关**
+**您之前怎么把设计图转换成布局还是按照以前方式来**
 
-如果老项目一直用的其它宽度dp预览的布局,则可以在Application 里面重设预览宽度
+> 如果老项目一直用的其它宽度dp预览的布局,      
+> 则可以在Application 里面重设全局预览宽度(单位dp)
+> 这样可以快速适配老项目
 
 ```
 MagicScreenAdapter.initDesignWidthInDp(380);
 ```
 
-这样可以快速适配老项目
+> 如果某个Activity 或者 Fragment 不想启用适配功能,
+> 请在类上使用注解:@IgnoreScreenAdapter   
+
+> 如果某个Activity 或者 Fragment 有单独的预览宽度(单位dp),
+> 请在类上使用注解:@ScreenAdapterDesignWidthInDp(400)
+
+> 如果一个Activity 同时展示多个Fragment ,并且Fragment之间    
+> 或者 Fragment 和 Activity 之间的适配 宽度不一致,则      
+> 会导致后续view的变化会以最后一个Fragment为准,解决方案:     
+> view变化时,请用代码指定适配布局宽度:       
+```
+MagicScreenAdapter.adapt(this, 360); //指定后续view变化的适配宽度
+
+MagicScreenAdapter.cancelAdapt(this);//或者后续view取消适配
+
+// this 为指定view 所在 Fragment 或者 Activity
+
+```
+
 
 ### 依赖方法:
 #### To get a Git project into your build:
 #### Step 1. Add the JitPack repository to your build file
 1.在全局build里面添加下面github仓库地址
-Add it in your root build.gradle at the end of repositories:
+1.Add it in your root build.gradle at the end of repositories:
 ```
 buildscript {
     ...
     dependencies {
 	...
-        classpath 'cn.leo.plugin:magic-plugin:1.0.0' //java 用这个
+    classpath 'cn.leo.plugin:magic-plugin:1.0.0' //java 用这个
 	//kotlin 或者 AS 版本低于3.0 用下面这个
 	classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0' 
     }
