@@ -1,10 +1,14 @@
 # MagicScreenAdapter
 不用写一句代码做好屏幕适配:
 
-本适配方案使用[今日头条的适配方案](https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA), 界面在不同尺寸屏幕上等比缩放;     
-预览的时候建议使用 1920x1080(360dp宽度)的屏幕分辨率预览 (默认Nexus5); 
+本适配方案使用[今日头条的适配方案](https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA);     
+预览的时候建议使用(Nexus5,xxhdpi,1920x1080,360dp宽度)的屏幕分辨率预览; 
 
 ### 布局预览是什么样在任何设备都是这个样子!       
+### 布局预览是什么样在任何设备都是这个样子!     
+### 布局预览是什么样在任何设备都是这个样子!  
+(重要的事情说三遍)
+
 ```
 (宽度一致,高度随设备变化,控件不要以底部为锚点依赖,否则在短屏幕上可能会和顶部依赖的控件重叠)      
 最好给布局外面套一个ScrollView作为适配,不论是短屏幕还是分屏,页面可以适配各种情况      
@@ -18,18 +22,17 @@
 
 > 如果老项目一直用的其它宽度dp预览的布局,      
 > 则可以在Application 里面重设全局预览宽度(单位dp)
-> 这样可以快速适配老项目
-
+> 这样可以快速适配老项目：
 ```
 MagicScreenAdapter.initDesignWidthInDp(380);
 ```
-> ***
+
+### 以下内容如果您的布局预览都是是统一的，请忽略！
+***
 > 如果某个Activity 或者 Fragment 不想启用适配功能,
-> 请在类上使用注解:@IgnoreScreenAdapter   
-> ***
+> 请在类上使用注解:@IgnoreScreenAdapter；   
 > 如果某个Activity 或者 Fragment 有单独的预览宽度(单位dp),
-> 请在类上使用注解:@ScreenAdapterDesignWidthInDp(400)
-> ***
+> 请在类上使用注解:@ScreenAdapterDesignWidthInDp(400)；
 > 如果一个Activity 同时展示多个Fragment ,并且Fragment之间    
 > 或者 Fragment 和 Activity 之间的适配 宽度不一致,则      
 > 会导致后续view的变化会以最后一个Fragment为准,解决方案:     
@@ -37,13 +40,9 @@ MagicScreenAdapter.initDesignWidthInDp(380);
 
 ```
 MagicScreenAdapter.adapt(this, 360); //指定后续view变化的适配宽度
-
 MagicScreenAdapter.cancelAdapt(this);//或者后续view取消适配
-
 // this 为指定view 所在 Fragment 或者 Activity
-
 ```
-
 ***
 ### 依赖方法:
 
