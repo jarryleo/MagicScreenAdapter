@@ -1,5 +1,5 @@
 # MagicScreenAdapter
-不用写一句代码做好屏幕适配:
+**依赖本库**不用写一句代码做好屏幕适配:
 
 本适配方案使用[今日头条的适配方案](https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA);     
 预览的时候建议使用(Nexus5,xxhdpi,1920x1080,360dp宽度)的屏幕分辨率预览; 
