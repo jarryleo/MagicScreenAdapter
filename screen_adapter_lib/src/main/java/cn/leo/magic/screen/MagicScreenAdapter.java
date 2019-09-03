@@ -20,6 +20,11 @@ public class MagicScreenAdapter {
         ScreenAdapter.mGlobalDesignWidthInDp = designWidthInDp;
     }
 
+    public static void initDesignWidthInDp(int designWidthInDp,boolean isAdaptLongSide) {
+        ScreenAdapter.mGlobalDesignWidthInDp = designWidthInDp;
+        ScreenAdapter.mIsAdaptLongSide = isAdaptLongSide;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.DONUT)
     public static void adapt(@NonNull Activity activity) {
         adapt(activity, 0);

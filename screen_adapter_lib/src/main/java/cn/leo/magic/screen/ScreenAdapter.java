@@ -17,6 +17,8 @@ class ScreenAdapter {
      */
     static int mGlobalDesignWidthInDp = 360;
 
+    static boolean mIsAdaptLongSide = false;
+
 
     /**
      * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
@@ -34,10 +36,18 @@ class ScreenAdapter {
         final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
         boolean isVerticalSlide = (activity.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT);
-        if (isVerticalSlide) {
-            activityDm.density = activityDm.widthPixels / (float) designWidthInDp;
+        int width = activityDm.widthPixels;
+        int height = activityDm.heightPixels;
+        int longSide = Math.max(width, height);
+
+        if (mIsAdaptLongSide) {
+            activityDm.density = longSide / (float) designWidthInDp;
         } else {
-            activityDm.density = activityDm.heightPixels / (float) designWidthInDp;
+            if (isVerticalSlide) {
+                activityDm.density = activityDm.widthPixels / (float) designWidthInDp;
+            } else {
+                activityDm.density = activityDm.heightPixels / (float) designWidthInDp;
+            }
         }
         activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
         activityDm.densityDpi = (int) (160 * activityDm.density + 0.5);
