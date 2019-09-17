@@ -1,15 +1,13 @@
 package cn.leo.magicscreenadapter;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import cn.leo.magic.screen.IgnoreScreenAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * @author Leo
  */
-@IgnoreScreenAdapter
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addFragment() {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction()
                 .replace(R.id.container, new TestFragment())
                 .commitAllowingStateLoss();
     }
 
     private void addFragmentV4() {
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        androidx.fragment.app.FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction()
                 .replace(R.id.container1, new TestV4Fragment())
                 .commitAllowingStateLoss();

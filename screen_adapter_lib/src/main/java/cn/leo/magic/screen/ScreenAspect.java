@@ -1,9 +1,9 @@
 package cn.leo.magic.screen;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -22,18 +22,13 @@ public class ScreenAspect {
 
     }
 
-    @Pointcut("execution(* android.app.Fragment+.onCreate(..))")
+    @Pointcut("execution(* androidx.fragment.app.Fragment+.onCreate(..))")
     public void pointcutFragment() {
 
     }
 
-    @Pointcut("execution(* android.support.v4.app.Fragment+.onCreate(..))")
-    public void pointcutFragmentV4() {
-
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    @Around("pointcutActivity() || pointcutFragment() || pointcutFragmentV4()")
+    @Around("pointcutActivity() || pointcutFragment()")
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object target = joinPoint.getTarget();
         boolean hasIgnoreAdapter = target.getClass().isAnnotationPresent(IgnoreScreenAdapter.class);
@@ -56,13 +51,6 @@ public class ScreenAspect {
                 ScreenAdapter.cancelAdaptScreen(((Fragment) target).getActivity());
             } else {
                 ScreenAdapter.adaptScreen(((Fragment) target).getActivity(), designWidthInDp);
-            }
-        }
-        if (target instanceof android.support.v4.app.Fragment) {
-            if (hasIgnoreAdapter) {
-                ScreenAdapter.cancelAdaptScreen(((android.support.v4.app.Fragment) target).getActivity());
-            } else {
-                ScreenAdapter.adaptScreen(((android.support.v4.app.Fragment) target).getActivity(), designWidthInDp);
             }
         }
         joinPoint.proceed();
