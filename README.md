@@ -5,14 +5,10 @@
 预览的时候建议使用(Nexus5,xxhdpi,1920x1080,360dp宽度)的屏幕分辨率预览; 
 
 ### 布局预览是什么样在任何设备都是这个样子!       
-### 布局预览是什么样在任何设备都是这个样子!     
-### 布局预览是什么样在任何设备都是这个样子!  
-(重要的事情说三遍)
 
 ```
-(宽度一致,高度随设备变化,控件不要以底部为锚点依赖,否则在短屏幕上可能会和顶部依赖的控件重叠)      
-最好给布局外面套一个ScrollView作为适配,不论是短屏幕还是分屏,页面可以适配各种情况      
-这里的宽度定义是指物理意义上的屏幕宽度,跟屏幕朝向无关!   
+本适配框架支持屏幕旋转，默认以设备最短边适配，要修改为最长边，在初始化的第二个参数选择     
+MagicScreenAdapter.initDesignWidthInDp(1024,true); 
 ```
 ***
 
@@ -56,11 +52,7 @@ buildscript {
     ...
     dependencies {
 	...
-	//java 用这个
-	classpath 'cn.leo.plugin:magic-plugin:1.0.0' 
-	
-	//kotlin 或者 AS 版本低于3.0 用下面这个
-	classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0' 
+	classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.6'
     }
 }
 allprojects {
@@ -74,15 +66,15 @@ allprojects {
 
 #### 2.在app的build里面添加插件和依赖
 ```
-//java 用这个
-apply plugin: 'cn.leo.plugin.magic' 
-
-//kotlin 或者 AS 版本低于3.0 用下面这个
+//如果是模块化开发，每个模块都要添加下面的插件
 apply plugin: 'android-aspectjx'  
 ...
 dependencies {
 	...
-	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.5'
+	
+	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.7'
+	//支持AndroidX版本用下面这个
+	implementation 'com.github.jarryleo:MagicScreenAdapter:v2.1'
 }
 ```
 ***
