@@ -72,7 +72,7 @@ apply plugin: 'android-aspectjx'
 dependencies {
 	...
 	
-	implementation 'com.github.jarryleo:MagicScreenAdapter:v1.7'
+	implementation 'com.github.jarryleo:MagicScreenAdapter:v2.8'
 	//支持AndroidX版本用下面这个
 	implementation 'com.github.jarryleo:MagicScreenAdapter:v2.1'
 }
