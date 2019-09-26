@@ -1,7 +1,5 @@
 package cn.leo.magicscreenadapter
 
-import cn.leo.magic.screen.IgnoreScreenAdapter
-
 /**
  * @author : ling luo
  * @date : 2019-09-25
