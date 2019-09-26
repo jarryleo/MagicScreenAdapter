@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'cn.leo.plugin.magic'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'android-aspectjx'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -17,7 +19,6 @@ android {
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "APP-release"
         }
         debug {
             debuggable true
@@ -25,7 +26,6 @@ android {
             zipAlignEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "APP-debug"
         }
     }
 }
@@ -38,5 +38,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':screen_adapter_lib')
-//    implementation 'com.github.jarryleo:MagicScreenAdapter:v1.3'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation 'com.github.jarryleo:MagicScreenAdapter:v1.7'
+}
+repositories {
+    mavenCentral()
 }

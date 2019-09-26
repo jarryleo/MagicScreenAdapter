@@ -1,10 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'cn.leo.plugin.magic'
+apply plugin: 'android-aspectjx'
 
 android {
     compileSdkVersion 27
+    defaultConfig {
+        minSdkVersion 16
+    }
 }
 
 dependencies {
     compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    compileOnly 'com.android.support:recyclerview-v7:27.1.1'
 }

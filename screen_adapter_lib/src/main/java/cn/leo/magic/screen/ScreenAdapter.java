@@ -3,8 +3,6 @@ package cn.leo.magic.screen;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 
 /**
@@ -23,7 +21,6 @@ class ScreenAdapter {
     /**
      * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
      */
-    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     static void adaptScreen(final Activity activity, int designWidthInDp) {
         if (activity == null) {
             return;
@@ -61,7 +58,6 @@ class ScreenAdapter {
      *
      * @param activity The activity.
      */
-    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     static void cancelAdaptScreen(final Activity activity) {
         if (activity == null) {
             return;
