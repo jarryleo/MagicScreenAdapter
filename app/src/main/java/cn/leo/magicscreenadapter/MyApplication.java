@@ -12,6 +12,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //MagicScreenAdapter.initDesignWidthInDp(360,false);
+        MagicScreenAdapter.initDesignWidthInDp(360,false);
     }
 }
